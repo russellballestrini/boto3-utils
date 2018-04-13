@@ -1,3 +1,5 @@
+# wget https://raw.githubusercontent.com/russellballestrini/boto3-utils/master/boto3_utils/__init__.py -O boto3_utils.py
+
 def merge_pages(key, pages):
     """Merge boto3 paginated results into single list.
     Args:
