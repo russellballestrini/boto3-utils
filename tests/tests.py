@@ -1,7 +1,6 @@
-
 from unittest import TestCase
 
-from . import (
+from boto3_utils import (
   dict_to_key_value,
   key_value_to_dict,
   snake_to_camel_case,
@@ -21,7 +20,7 @@ class TestSnakeToCamelCase(TestCase):
         )
 
     def test_name_http_response(self):
-        # this tests short circut of answers.
+        # this tests a short circut of answers.
         self.assertEqual(
           snake_to_camel_case('http_response', answers=self.answers),
           'HTTPResponse'
@@ -42,10 +41,10 @@ class TestMakeTagDict(TestCase):
               {'Key':'Name', 'Value':'myapp01-web01'},
               {'Key':'role', 'Value':'web'},
             ]
-    self.test_obj = TestSubject
+        self.test_obj = TestSubject
 
     def test_make_tag_dict(self):            
-        tags = make_tag_dict(test_obj.tags)
+        tags = make_tag_dict(self.test_obj.tags)
         self.assertIn('Name', tags)
         self.assertIn('role', tags)
         self.assertEqual(tags['Name'], 'myapp01-web01')
@@ -63,7 +62,7 @@ class TestDictToKeyValue(TestCase):
         not_as_pretty = dict_to_key_value(data,'x','x')
         self.assertEqual(not_as_pretty.count('x'), 3)
 
-    def test_key_value_to_dict():
+    def test_key_value_to_dict(self):
         key_value_list = ['a=1,b=2', 'c=3, d=4', 'e=5']
         desired_result = {'a':'1', 'b':'2', 'c':'3', 'd':'4', 'e':'5'}
         self.assertEqual(key_value_to_dict(key_value_list), desired_result)

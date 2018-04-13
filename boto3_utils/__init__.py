@@ -42,12 +42,14 @@ def key_value_to_dict(key_value_list, sep='=', pair_sep=',' ):
     return d
 
 
-def snake_to_camel_case(name):
+def snake_to_camel_case(name, answers=None):
     """
     Accept a snake_case string and return a CamelCase string.
     For example::
       >>> snake_to_camel_case('cidr_block')
       'CidrBlock'
     """
+    if answers and name in answers:
+        return answers[name]
     name = name.replace("-", "_")
     return "".join(word.capitalize() for word in name.split("_"))
